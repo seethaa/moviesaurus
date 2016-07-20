@@ -1,6 +1,6 @@
 # Project 1 - Moviesaurus
 
-**Name of your app** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
+Moviesaurus shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
 Time spent: 2 hours spent in total
 

@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
+    int mOrientation;
     //View lookup cache
     private static class ViewHolder {
         ImageView movieImage;
@@ -31,6 +32,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        mOrientation = getContext().getResources().getConfiguration().orientation;
 
         //get the data item for position
         Movie movie = getItem(position);
@@ -59,7 +62,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         viewHolder.movieTitle.setText(movie.getOriginalTitle());
         viewHolder.movieOverview.setText(movie.getOverview());
 
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.movieImage);
+        Picasso.with(getContext()).load(movie.getPosterPath(mOrientation)).into(viewHolder.movieImage);
         return convertView;
     }
 }

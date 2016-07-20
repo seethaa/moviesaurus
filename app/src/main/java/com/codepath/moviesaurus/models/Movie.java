@@ -1,5 +1,7 @@
 package com.codepath.moviesaurus.models;
 
+import android.content.res.Configuration;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,7 +12,11 @@ import java.util.ArrayList;
  * Created by seetha on 7/20/16.
  */
 public class Movie {
-    public String getPosterPath() {
+    public String getPosterPath(int orientation) {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE ){
+            return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
+        }
+
         return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
     }
 
@@ -23,6 +29,7 @@ public class Movie {
     }
 
     String posterPath;
+    String backdropPath;
     String originalTitle;
     String overview;
 
@@ -30,6 +37,7 @@ public class Movie {
         this.posterPath = jsonObject.getString("poster_path");
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
+        this.backdropPath = jsonObject.getString("backdrop_path");
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array){

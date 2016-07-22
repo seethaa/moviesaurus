@@ -50,8 +50,9 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder.movieImage = (ImageView) convertView.findViewById(R.id.ivMovieImage);
             //clear out image from convertView
             //viewHolder.movieImage.setImageResource(0);
+
             viewHolder.movieTitle = (TextView) convertView.findViewById(R.id.tvMovieTitle);
-            viewHolder.movieOverview = (TextView) convertView.findViewById(R.id.tvOverview);
+           // viewHolder.movieOverview = (TextView) convertView.findViewById(R.id.tvOverview);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -60,9 +61,9 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
         //populate data
         viewHolder.movieTitle.setText(movie.getOriginalTitle());
-        viewHolder.movieOverview.setText(movie.getOverview());
+       // viewHolder.movieOverview.setText(movie.getOverview());
 
-        Picasso.with(getContext()).load(movie.getPosterPath(mOrientation)).into(viewHolder.movieImage);
+        Picasso.with(getContext()).load(movie.getPosterPath(mOrientation)).fit().placeholder(R.drawable.moviesaurusdefault).into(viewHolder.movieImage);
         return convertView;
     }
 }

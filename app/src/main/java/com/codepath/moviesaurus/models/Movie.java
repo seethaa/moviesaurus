@@ -1,7 +1,5 @@
 package com.codepath.moviesaurus.models;
 
-import android.content.res.Configuration;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,11 +11,14 @@ import java.util.ArrayList;
  */
 public class Movie {
     public String getPosterPath(int orientation) {
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE ){
-            return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
-        }
+//        if (orientation == Configuration.ORIENTATION_LANDSCAPE ){
+//            return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
+//        }
+//
+//        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
 
-        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+        return String.format("https://image.tmdb.org/t/p/original/%s", backdropPath);
+
     }
 
     public String getOriginalTitle() {

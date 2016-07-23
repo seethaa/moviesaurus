@@ -25,6 +25,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         ImageView movieImage;
         TextView movieTitle;
         TextView movieOverview;
+        TextView mMovieSubtext;
+
     }
     public MovieArrayAdapter(Context context,List<Movie> movies){
         super(context, android.R.layout.simple_list_item_1, movies);
@@ -53,6 +55,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
             viewHolder.movieTitle = (TextView) convertView.findViewById(R.id.tvMovieTitle);
            // viewHolder.movieOverview = (TextView) convertView.findViewById(R.id.tvOverview);
+
+            viewHolder.mMovieSubtext = (TextView) convertView.findViewById(R.id.tvSummaryText);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -62,6 +66,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         //populate data
         viewHolder.movieTitle.setText(movie.getOriginalTitle());
        // viewHolder.movieOverview.setText(movie.getOverview());
+        viewHolder.mMovieSubtext.setText(movie.getRatings());
 
         Picasso.with(getContext()).load(movie.getPosterPath(mOrientation)).fit().placeholder(R.drawable.moviesaurusdefault).into(viewHolder.movieImage);
         return convertView;

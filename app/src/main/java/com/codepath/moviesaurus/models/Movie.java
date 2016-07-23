@@ -34,11 +34,29 @@ public class Movie {
     String originalTitle;
     String overview;
 
+    public String getRunTime() {
+        return runTime;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    String genre;
+    String runTime;
+
+    public String getRatings() {
+        return "(" +ratings + "/10)";
+    }
+
+    String ratings;
+
     public Movie(JSONObject jsonObject) throws JSONException{
         this.posterPath = jsonObject.getString("poster_path");
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.backdropPath = jsonObject.getString("backdrop_path");
+        this.ratings = jsonObject.getString("vote_average");
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array){

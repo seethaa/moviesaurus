@@ -51,7 +51,7 @@ Full GIF:
 
 Portrait mode:
 
-<img src='http://i.imgur.com/3otWdyx.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/Gym9BFd.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 Landscape mode:
 

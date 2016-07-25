@@ -83,7 +83,9 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             viewHolder.movieOverview.setText(movie.getOverview());
         }
-        viewHolder.movieRatingBar.setRating(Float.parseFloat(movie.getDoubleRatings()+""));
+        if (mOrientation == Configuration.ORIENTATION_PORTRAIT){
+            viewHolder.movieRatingBar.setRating(Float.parseFloat(movie.getDoubleRatings()+""));
+        }
         viewHolder.movieSubtext.setText(movie.getRatings() + " | " + movie.getReleaseDate());
         Picasso.with(getContext()).load(movie.getBackdropPath()).fit().placeholder(R.drawable.moviesaurusdefault).into(viewHolder.movieImage);
 

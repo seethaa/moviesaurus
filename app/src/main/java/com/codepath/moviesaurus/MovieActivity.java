@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.codepath.moviesaurus.adapters.MovieArrayAdapter;
 import com.codepath.moviesaurus.models.Movie;
+import com.codepath.moviesaurus.utils.MovieAPIClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;

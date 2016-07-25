@@ -1,4 +1,4 @@
-package com.codepath.moviesaurus;
+package com.codepath.moviesaurus.utils;
 
 import android.content.Context;
 import android.view.GestureDetector;

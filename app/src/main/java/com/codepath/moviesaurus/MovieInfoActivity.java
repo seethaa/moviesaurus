@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.codepath.moviesaurus.models.Cast;
 import com.codepath.moviesaurus.models.Movie;
 import com.codepath.moviesaurus.models.Trailer;
+import com.codepath.moviesaurus.utils.MovieAPIClient;
+import com.codepath.moviesaurus.utils.OnSwipeTouchListener;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.squareup.picasso.Picasso;
 

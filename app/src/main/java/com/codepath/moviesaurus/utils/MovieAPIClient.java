@@ -1,4 +1,4 @@
-package com.codepath.moviesaurus;
+package com.codepath.moviesaurus.utils;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;

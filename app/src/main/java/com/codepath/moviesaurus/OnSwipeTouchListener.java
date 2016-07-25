@@ -6,7 +6,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 
-/*Usage:
+/*
+    **Copied from Codepath guides.**
+
+    Usage:
 
   myView.setOnTouchListener(new OnSwipeTouchListener(this) {
     @Override

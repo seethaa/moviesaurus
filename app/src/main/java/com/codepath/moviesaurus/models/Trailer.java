@@ -12,6 +12,9 @@ import java.util.ArrayList;
 public class Trailer {
 
     String name;
+    String size;
+    String source;
+    String type;
 
     public String getName() {
         return name;
@@ -29,9 +32,6 @@ public class Trailer {
         return type;
     }
 
-    String size;
-    String source;
-    String type;
 
     public Trailer(JSONObject jsonObject) throws JSONException {
         this.name = jsonObject.getString("name");
@@ -41,6 +41,11 @@ public class Trailer {
 
     }
 
+    /**
+     * Converts JSONArray into list of Trailer objects
+     * @param array
+     * @return
+     */
     public static ArrayList<Trailer> fromJSONArray(JSONArray array){
         ArrayList<Trailer> results = new ArrayList<>();
 

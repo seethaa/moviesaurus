@@ -9,6 +9,9 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 import java.util.ArrayList;
 
+/**
+ * ShowTrailerActivity uses YouTubePlayerView to play trailers for particular movie.
+ */
 public class ShowTrailerActivity extends YouTubeBaseActivity {
     private static final String MY_YOUTUBE_API_KEY = "AIzaSyBiTra3IzD0S_rWUefBlwduhwg53Rf21Jg";
     private String trailerSource;
@@ -34,6 +37,7 @@ public class ShowTrailerActivity extends YouTubeBaseActivity {
                         // do any work here to cue video, play video, etc.
                         youTubePlayer.loadVideos(trailerSources);
                     }
+
                     @Override
                     public void onInitializationFailure(YouTubePlayer.Provider provider,
                                                         YouTubeInitializationResult youTubeInitializationResult) {

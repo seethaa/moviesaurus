@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.codepath.moviesaurus.models.Cast;
 import com.codepath.moviesaurus.models.Movie;
 import com.codepath.moviesaurus.models.Trailer;
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.squareup.picasso.Picasso;
 
@@ -24,7 +23,16 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
+/**
+ * MovieInfoActivity shows details about the movie:
+ * title, overview, cast, runtime, genre, trailers, and ratings.
+ */
 public class MovieInfoActivity extends AppCompatActivity {
+    private MovieAPIClient mMovieAPIClient;
+    static Movie mCurrentMovie;
+    static ArrayList<Trailer> mTrailerArrayList;
+    static ArrayList<Cast> mCastArrayList;
+
     int mPositionInMoviesList;
     int mOrientation;
     ImageView mMovieImage;
@@ -34,14 +42,6 @@ public class MovieInfoActivity extends AppCompatActivity {
     TextView mMovieSummaryTextLine2;
     TextView mMovieCast;
     ImageButton mPlayTrailerButton;
-    static Movie mCurrentMovie;
-    private MovieAPIClient mMovieAPIClient;
-    static ArrayList<Trailer> trailerArrayList;
-    static ArrayList<Cast> castArrayList;
-
-    AsyncHttpClient client;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,6 @@ public class MovieInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_info);
 
         mOrientation = getApplicationContext().getResources().getConfiguration().orientation;
-
 
         mPositionInMoviesList = getIntent().getIntExtra("position", 0);
         mCurrentMovie = MovieActivity.mMoviesArrayList.get(mPositionInMoviesList);
@@ -69,9 +68,6 @@ public class MovieInfoActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-//
-//                Toast.makeText(MovieInfoActivity.this,
-//                        "ImageButton is clicked!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MovieInfoActivity.this, ShowTrailerActivity.class);
                 intent.putStringArrayListExtra("allTrailerIDs", mCurrentMovie.getAllTrailerIDs());
                 startActivity(intent);
@@ -79,10 +75,16 @@ public class MovieInfoActivity extends AppCompatActivity {
             }
 
         });
+
         fetchMovieDetails();
+        setSwipeListeners();
 
+    }
 
-
+    /**
+     * @TODO: Go to next and previous moviedetail screens on swipe left and right
+     */
+    private void setSwipeListeners() {
         //set right swipe listener
         View currView = this.findViewById(android.R.id.content);
 
@@ -110,17 +112,12 @@ public class MovieInfoActivity extends AppCompatActivity {
 //                Toast.makeText(MovieInfoActivity.this, "Right", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
-
     private void fetchMovieDetails() {
-        trailerArrayList = new ArrayList<Trailer>();
-        castArrayList = new ArrayList<Cast>();
+        mTrailerArrayList = new ArrayList<Trailer>();
+        mCastArrayList = new ArrayList<Cast>();
 
-        // Show progress bar before making network request
-//        progress.setVisibility(ProgressBar.VISIBLE);
         mMovieAPIClient = new MovieAPIClient();
         mMovieAPIClient.getExtraMovieDetails(mCurrentMovie.getMovieID(), new JsonHttpResponseHandler() {
             @Override
@@ -131,35 +128,29 @@ public class MovieInfoActivity extends AppCompatActivity {
 
                 try {
                     //get trailers
-                    System.out.println("DEBUGGY extra: " + response);
                     JSONObject trailerJSONObject = response.getJSONObject("trailers");
                     trailerJsonResults = trailerJSONObject.getJSONArray("youtube");
-                    trailerArrayList.addAll(Trailer.fromJSONArray(trailerJsonResults));
-                    printTrailerList(trailerArrayList);
-                    mCurrentMovie.setTrailers(trailerArrayList);
+                    mTrailerArrayList.addAll(Trailer.fromJSONArray(trailerJsonResults));
+                    mCurrentMovie.setTrailers(mTrailerArrayList);
 
                     //get cast and set to textview
                     JSONObject creditsJSONObject = response.getJSONObject("credits");
-                    System.out.println("DEBUGGY CAST: "+creditsJSONObject);
                     castJsonResults = creditsJSONObject.getJSONArray("cast");
-                    castArrayList.addAll(Cast.fromJSONArray(castJsonResults));
-                    printCastList(castArrayList);
-                    mCurrentMovie.setCast(castArrayList);
+                    mCastArrayList.addAll(Cast.fromJSONArray(castJsonResults));
+                    mCurrentMovie.setCast(mCastArrayList);
                     mMovieCast.setText(mCurrentMovie.getCastText());
 
                     //get runtime
                     JSONObject JSONObjectRunTime = new JSONObject(String.valueOf(response));
-                    String runtime =  JSONObjectRunTime.getString("runtime");
-
+                    String runtime = JSONObjectRunTime.getString("runtime");
                     mCurrentMovie.setRunTime(runtime);
 
-                    Picasso.with(getApplicationContext()).load(mCurrentMovie.getPosterPath(mOrientation)).fit().placeholder(R.drawable.moviesaurusdefault).into(mMovieImage);
+                    //set image, title, overview, and summary lines
+                    Picasso.with(getApplicationContext()).load(mCurrentMovie.getBackdropPath()).fit().placeholder(R.drawable.moviesaurusdefault).into(mMovieImage);
                     mMovieTitle.setText(mCurrentMovie.getOriginalTitle());
                     mMovieOverview.setText(mCurrentMovie.getOverview());
-                    mMovieSummaryText.setText(mCurrentMovie.getRatings() + " | "  + mCurrentMovie.getReleaseDate() + " | " + mCurrentMovie.getRunTime() + "min");
+                    mMovieSummaryText.setText(mCurrentMovie.getRatings() + " | " + mCurrentMovie.getReleaseDate() + " | " + mCurrentMovie.getRunTime() + "min");
                     mMovieSummaryTextLine2.setText(mCurrentMovie.getCommaSeparatedGenres());
-
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -169,17 +160,4 @@ public class MovieInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void printCastList(ArrayList<Cast> castArrayList) {
-        for (int i=0; i<castArrayList.size(); i++){
-            System.out.println("DEBUGGY CAST: " + castArrayList.get(i).getName());
-        }
-    }
-
-
-    private void printTrailerList(ArrayList<Trailer> trailerArrayList) {
-        for (int i=0; i<trailerArrayList.size(); i++){
-            System.out.println("DEBUGGY: " + trailerArrayList.get(i).getName());
-        }
-
-    }
 }

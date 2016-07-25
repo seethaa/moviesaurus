@@ -50,18 +50,17 @@
                 android:textStyle="bold"
                 tools:text="Some Title" />
 
-        <!--    <RatingBar
-                android:id="@+id/rbMovieRatings"
-                android:layout_width="385dp"
-                android:scaleX=".5"
-                android:scaleY=".5"
-                android:stepSize="0.1"
-                android:layout_marginLeft="5dp"
-                android:layout_height="wrap_content"
-                android:rating="4"
-                android:numStars="5"
-                android:isIndicator="true" />-->
-
+            <!--    <RatingBar
+                    android:id="@+id/rbMovieRatings"
+                    android:layout_width="385dp"
+                    android:scaleX=".5"
+                    android:scaleY=".5"
+                    android:stepSize="0.1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content"
+                    android:rating="4"
+                    android:numStars="5"
+                    android:isIndicator="true" />-->
 
 
         </LinearLayout>

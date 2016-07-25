@@ -14,8 +14,7 @@
         android:ellipsize="end"
         android:textColor="@color/white"
         android:layout_toRightOf="@+id/ivMovieImage"
-        android:layout_alignTop="@+id/ivMovieImage"
-         />
+        android:layout_alignTop="@+id/ivMovieImage" />
 
     <ImageView
         android:id="@+id/ivMovieImage"

@@ -46,7 +46,21 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+Full GIF:
 <img src='http://i.imgur.com/4mORQ6O.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Portrait mode:
+
+<img src='http://i.imgur.com/3otWdyx.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Landscape mode:
+
+<img src='http://i.imgur.com/UzmzwFw.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Required only:
+
+<img src='http://i.imgur.com/JreENSI.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

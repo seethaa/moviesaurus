@@ -60,6 +60,16 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <RatingBar
+            android:id="@+id/rbMovieRatings"
+            style="?android:attr/ratingBarStyleSmall"
+            android:stepSize="0.1"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:isIndicator="true" />
+
         <TextView
             android:layout_width="300dp"
             android:id="@+id/tvSummaryText"

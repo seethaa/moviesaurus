@@ -55,7 +55,7 @@ Portrait mode:
 
 Landscape mode:
 
-<img src='http://i.imgur.com/UzmzwFw.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/uxn5iiT.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 Required only:
 

@@ -23,6 +23,7 @@ public class Movie {
     String runTime;
     String ratings;
     String releaseDate;
+    String popularity;
     ArrayList<Integer> genreIDs;
 
     public String getBackdropPath() {
@@ -35,6 +36,12 @@ public class Movie {
 
     public String getOverview() {
         return overview;
+    }
+
+    public double getPopularity() { //return rounded popularity %
+        double currPopularity = Double.parseDouble(popularity);
+        double roundedPopularity = (double)Math.round((currPopularity) * 10d) / 10d;
+        return roundedPopularity;
     }
 
     public void setRunTime(String runTime) {
@@ -88,11 +95,13 @@ public class Movie {
     }
 
     public String getRatings() {
-        return ratings + "/10";
+        return getDoubleRatings() + "/5";
     }
 
     public double getDoubleRatings() {
-        return Double.parseDouble(ratings);
+        double currRating = Double.parseDouble(ratings)/2;
+        double roundedRating = (double)Math.round((currRating) * 10d) / 10d;
+        return roundedRating;
     }
 
     /**
@@ -109,6 +118,7 @@ public class Movie {
         this.ratings = jsonObject.getString("vote_average");
         this.movieID = jsonObject.getString("id");
         this.releaseDate = jsonObject.getString("release_date");
+        this.popularity = jsonObject.getString("popularity");
 
         JSONArray genreArray = jsonObject.getJSONArray("genre_ids");
         genreIDs = new ArrayList<Integer>();
@@ -169,12 +179,15 @@ public class Movie {
     public String getCastText() {
         String castText = "";
         for (int i = 0; i < cast.size(); i++) {
-            castText = castText + cast.get(i).getCharacter() + " (" + cast.get(i).getName() + "), ";
+            String character = cast.get(i).getCharacter();
+            if (!character.trim().equals("")) {
+                castText = castText + character + "..." + "("+cast.get(i).getName() + ")\n";
+            }
         }
-        if (castText.length() > 2) {
-            castText = castText.substring(0, castText.length() - 2);
-        }
+//        if (castText.length() > 2) {
+//            castText = castText.substring(0, castText.length() - 2);
+//        }
 
-        return castText;
+        return castText.trim();
     }
 }

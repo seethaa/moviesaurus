@@ -1,11 +1,15 @@
 package com.codepath.moviesaurus;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,10 +42,12 @@ public class MovieInfoActivity extends AppCompatActivity {
     ImageView mMovieImage;
     TextView mMovieTitle;
     TextView mMovieOverview;
+    TextView mPopularity;
     TextView mMovieSummaryText;
     TextView mMovieSummaryTextLine2;
     TextView mMovieCast;
     ImageButton mPlayTrailerButton;
+    RatingBar mRatingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +62,8 @@ public class MovieInfoActivity extends AppCompatActivity {
         mMovieImage = (ImageView) findViewById(R.id.ivMovieImage);
         mMovieTitle = (TextView) findViewById(R.id.tvMovieTitle);
         mMovieOverview = (TextView) findViewById(R.id.tvOverview);
-
+        mRatingBar = (RatingBar) findViewById(R.id.rbMovieRatings);
+        mPopularity = (TextView) findViewById(R.id.tvPopularity);
 
         mPlayTrailerButton = (ImageButton) findViewById(R.id.ibPlayTrailer);
 
@@ -145,10 +152,18 @@ public class MovieInfoActivity extends AppCompatActivity {
                     String runtime = JSONObjectRunTime.getString("runtime");
                     mCurrentMovie.setRunTime(runtime);
 
+
                     //set image, title, overview, and summary lines
                     Picasso.with(getApplicationContext()).load(mCurrentMovie.getBackdropPath()).fit().placeholder(R.drawable.moviesaurusdefault).into(mMovieImage);
                     mMovieTitle.setText(mCurrentMovie.getOriginalTitle());
-                    mMovieOverview.setText(mCurrentMovie.getOverview());
+                    Drawable progress = mRatingBar.getProgressDrawable();
+                    DrawableCompat.setTint(progress, Color.parseColor("#9a6006"));
+                    mRatingBar.setProgressDrawable(progress);
+                    mRatingBar.setStepSize(0.1f);
+//                    mRatingBar.setScaleX(0.6f);
+//                    mRatingBar.setScaleY(0.6f);
+                    mRatingBar.setRating(Float.parseFloat(mCurrentMovie.getDoubleRatings()+""));                    mMovieOverview.setText(mCurrentMovie.getOverview());
+                    mPopularity.setText("Popularity: " + mCurrentMovie.getPopularity() + "%");
                     mMovieSummaryText.setText(mCurrentMovie.getRatings() + " | " + mCurrentMovie.getReleaseDate() + " | " + mCurrentMovie.getRunTime() + "min");
                     mMovieSummaryTextLine2.setText(mCurrentMovie.getCommaSeparatedGenres());
 

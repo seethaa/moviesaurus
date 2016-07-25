@@ -49,16 +49,41 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="300dp"
-            android:id="@+id/tvSummaryText"
+
+        <!--<TextView-->
+            <!--android:layout_width="148dp"-->
+            <!--android:id="@+id/tvSummaryText"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="left"-->
+            <!--android:text="(5.6/10) | Action | 120 min"-->
+            <!--android:textColor="#CCC"-->
+            <!--android:textSize="14sp"-->
+            <!--android:layout_gravity="right" />-->
+
+        <RatingBar
+            android:id="@+id/rbMovieRatings"
+            style="?android:attr/ratingBarStyleSmall"
+            android:stepSize="0.1"
             android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:numStars="5"
+            android:isIndicator="true" />
+
+        <TextView
+            android:id="@+id/tvSummaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:gravity="left"
-            android:text="(5.6/10) | Action | 120 min"
-            android:textColor="#CCC"
+            android:textColor="@color/gold"
             android:textSize="14sp"
-            android:layout_gravity="left" />
+            android:textStyle="bold"
+            tools:text="2015 | 120 min | Action" />
+
     </LinearLayout>
 
 </RelativeLayout>

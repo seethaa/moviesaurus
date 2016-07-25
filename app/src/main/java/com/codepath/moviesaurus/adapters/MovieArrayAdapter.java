@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.codepath.moviesaurus.R;
@@ -29,6 +30,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         TextView movieTitle;
         TextView movieSubtext;
         TextView movieOverview;
+        RatingBar movieRatingBar;
     }
 
     public MovieArrayAdapter(Context context, List<Movie> movies) {
@@ -64,6 +66,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
             viewHolder.movieTitle = (TextView) convertView.findViewById(R.id.tvMovieTitle);
 
+            viewHolder.movieRatingBar = (RatingBar) convertView.findViewById(R.id.rbMovieRatings);
             viewHolder.movieSubtext = (TextView) convertView.findViewById(R.id.tvSummaryText);
             convertView.setTag(viewHolder);
 
@@ -80,6 +83,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             viewHolder.movieOverview.setText(movie.getOverview());
         }
+        viewHolder.movieRatingBar.setRating(Float.parseFloat(movie.getDoubleRatings()+""));
         viewHolder.movieSubtext.setText(movie.getRatings() + " | " + movie.getReleaseDate());
         Picasso.with(getContext()).load(movie.getBackdropPath()).fit().placeholder(R.drawable.moviesaurusdefault).into(viewHolder.movieImage);
 

@@ -51,6 +51,7 @@
             android:layout_height="match_parent"
             android:id="@+id/tvMovieTitle"
             android:gravity="left"
+            android:layout_marginLeft="5dp"
             android:shadowColor="#000"
             android:shadowDx="3"
             android:shadowDy="3"
@@ -63,11 +64,12 @@
         <TextView
             android:layout_width="300dp"
             android:id="@+id/tvSummaryText"
+            android:layout_marginLeft="5dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="(5.6/10) | Action | 120 min"
             android:textColor="#CCC"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:layout_gravity="left" />
     </LinearLayout>
 

@@ -28,6 +28,8 @@ public class MovieActivity extends AppCompatActivity {
     ListView mListView;
     private SwipeRefreshLayout swipeContainer;
     AsyncHttpClient client;
+    MovieAPIClient movieAPIClient;
+
     private final String MOVIE_DATABASE_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
 
@@ -45,7 +47,7 @@ public class MovieActivity extends AppCompatActivity {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                fetchMoviesAsync(0);
+                fetchAllMovies();
             }
         });
         // Configure the refreshing colors
@@ -71,29 +73,11 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
 
-        client = new AsyncHttpClient();
-        client.get(MOVIE_DATABASE_URL, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                JSONArray movieJsonResults = null;
+        //get all genres
 
-                try {
-                    movieJsonResults = response.getJSONArray("results");
-                    mMoviesArrayList.addAll(Movie.fromJSONArray(movieJsonResults));
-                    movieAdapter.notifyDataSetChanged();
-                    Log.d("DEBUG", mMoviesArrayList.toString());
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-            }
-        });
+        //fetch movie details try
+        fetchAllMovies();
     }
 
 
@@ -101,18 +85,21 @@ public class MovieActivity extends AppCompatActivity {
      * Method to fetch updated data and refresh the listview.
      *
      */
-    public void fetchMoviesAsync(int page) {
-        // Send the network request to fetch the updated data
-        // `client` here is an instance of Android Async HTTP
-        client.get(MOVIE_DATABASE_URL, new JsonHttpResponseHandler() {
+    private void fetchAllMovies() {
+        // Show progress bar before making network request
+//        progress.setVisibility(ProgressBar.VISIBLE);
+        movieAPIClient = new MovieAPIClient();
+        movieAPIClient.getAllMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 JSONArray movieJsonResults = null;
 
                 try {
                     movieJsonResults = response.getJSONArray("results");
+                    mMoviesArrayList.clear();
                     mMoviesArrayList.addAll(Movie.fromJSONArray(movieJsonResults));
                     movieAdapter.notifyDataSetChanged();
+                    printAllMovies(mMoviesArrayList);
                     Log.d("DEBUG", mMoviesArrayList.toString());
                     swipeContainer.setRefreshing(false);
 
@@ -120,9 +107,46 @@ public class MovieActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
+//
         });
-
     }
+
+    // Executes an API call to the OpenLibrary search endpoint, parses the results
+    // Converts them into an array of book objects and adds them to the adapter
+    private void fetchMoviesOnSearch(String query) {
+        // Show progress bar before making network request
+//        progress.setVisibility(ProgressBar.VISIBLE);
+        movieAPIClient = new MovieAPIClient();
+        movieAPIClient.getMovies(query, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                JSONArray movieJsonResults = null;
+
+                try {
+                    movieJsonResults = response.getJSONArray("results");
+                    mMoviesArrayList.clear();
+                    mMoviesArrayList.addAll(Movie.fromJSONArray(movieJsonResults));
+                    movieAdapter.notifyDataSetChanged();
+                    printAllMovies(mMoviesArrayList);
+                    Log.d("DEBUG", mMoviesArrayList.toString());
+                    swipeContainer.setRefreshing(false);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+//
+        });
+    }
+
+
+    private void printAllMovies(ArrayList<Movie> mMoviesArrayList) {
+        for (int i = 0; i < mMoviesArrayList.size(); i++) {
+            System.out.println("DEBUGGY MovieActivity: " + mMoviesArrayList.get(i).getOriginalTitle());
+        }
+    }
+
+
 }

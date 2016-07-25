@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -41,20 +46,36 @@
             android:shadowDx="3"
             android:shadowDy="3"
             android:shadowRadius="6"
-            android:text="Some Title"
+            tools:text="Some Title"
             android:textColor="#FFF"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
             android:id="@+id/tvSummaryText"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="2015 | 120 min | Action"
+            tools:text="2015 | 120 min | Action"
             android:textColor="#CCC"
-            android:textSize="12sp"/>
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/tvSummaryTextLine2"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textStyle="bold"
+            tools:text="2015 | 120 min | Action"
+            android:textColor="@color/gold"
+            android:textSize="14sp"/>
 
 
     </LinearLayout>
@@ -77,7 +98,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/darkCyan"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Overview"
             android:layout_margin="5dp"
@@ -91,7 +112,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/darkGray"
             android:layout_marginTop="5dp"
             android:layout_margin="5dp"
             tools:text="We always knew they were coming back. Using recovered alien technology, the nations of Earth have collaborated on an immense defense program to protect the planet. But nothing can prepare us for the aliens’ advanced and unprecedented force. Only the ingenuity of a few brave men and women can bring our world back from the brink of extinction."
@@ -101,8 +122,43 @@
             android:layout_alignStart="@+id/ivMovieImage"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkCyan"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Cast"
+            android:layout_margin="5dp"
+            android:id="@+id/tvCastHeading"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/tvOverview"
+            android:layout_alignStart="@+id/tvOverview"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkGray"
+            android:layout_marginTop="5dp"
+            android:layout_margin="5dp"
+            tools:text="We always knew they were coming back. Using recovered alien technology, the nations of Earth have collaborated on an immense defense program to protect the planet. But nothing can prepare us for the aliens’ advanced and unprecedented force. Only the ingenuity of a few brave men and women can bring our world back from the brink of extinction."
+            android:id="@+id/tvCast"
+            android:layout_below="@+id/ivMovieImage"
+            android:layout_alignLeft="@+id/ivMovieImage"
+            android:layout_alignStart="@+id/ivMovieImage"
+            />
 
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ibPlayTrailer"
+        android:src="@drawable/youtube_play_shadow"
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
 
 
     <!--    <TextView
@@ -117,3 +173,5 @@
 
 
 </RelativeLayout>
+
+    </ScrollView>

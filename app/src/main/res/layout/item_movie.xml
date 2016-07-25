@@ -8,13 +8,15 @@
         android:id="@+id/ivMovieImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="5dp"
-        tools:src="@mipmap/ic_launcher" />
+        tools:src="@mipmap/ic_launcher"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
     <LinearLayout
@@ -22,16 +24,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bg_gradient_1"
-        android:layout_margin="5dp"
         android:orientation="vertical"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:layout_gravity="left">
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/tvMovieTitle"
+            android:layout_marginLeft="5dp"
             android:gravity="left"
             android:shadowColor="#000"
             android:shadowDx="3"
@@ -39,36 +46,19 @@
             android:shadowRadius="6"
             android:text="Some Title"
             android:textColor="#FFF"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="300dp"
             android:id="@+id/tvSummaryText"
+            android:layout_marginLeft="5dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="(5.6/10) | Action | 120 min"
             android:textColor="#CCC"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:layout_gravity="left" />
     </LinearLayout>
 
-    <!--    <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:textAppearance="?android:attr/textAppearanceLarge"
-             tools:text="Independence Day: Resurgence"
-             android:id="@+id/tvMovieTitle"
-             android:layout_alignParentTop="true"
-             android:layout_toRightOf="@+id/ivMovieImage"
-             android:layout_toEndOf="@+id/ivMovieImage" />
-
-  <TextView
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     tools:text="We always knew they were coming back. Using recovered alien technology, the nations of Earth have collaborated on an immense defense program to protect the planet. But nothing can prepare us for the aliens’ advanced and unprecedented force. Only the ingenuity of a few brave men and women can bring our world back from the brink of extinction."
-     android:id="@+id/tvOverview"
-     android:layout_below="@+id/tvMovieTitle"
-     android:layout_toRightOf="@+id/ivMovieImage"
-     android:layout_toEndOf="@+id/ivMovieImage" /> -->
 </RelativeLayout>
